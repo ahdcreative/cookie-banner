@@ -1,0 +1,29 @@
+{
+    "extends": [
+        "@biomejs/biome/configuration_recommendation"
+    ],
+    "files": {
+        "ignore": [
+            "node_modules",
+            "dist",
+            "coverage"
+        ]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 2,
+        "lineWidth": 100
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single"
+        }
+    }
+}
