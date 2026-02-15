@@ -1,37 +1,37 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue';
 
 const props = defineProps({
   buttonText: {
     type: String,
-    default: 'Got it!'
+    default: 'Got it!',
   },
   message: {
     type: String,
-    default: 'This website uses cookies to ensure you get the best experience on our website.'
+    default: 'This website uses cookies to ensure you get the best experience on our website.',
   },
   theme: {
     type: String,
-    default: 'base' // base, dark, lime
+    default: 'base', // base, dark, lime
   },
   storageName: {
     type: String,
-    default: 'cookie:accepted'
-  }
-})
+    default: 'cookie:accepted',
+  },
+});
 
-const isOpen = ref(false)
+const isOpen = ref(false);
 
 const accept = () => {
-    isOpen.value = false
-    localStorage.setItem(props.storageName, 'true')
-}
+  isOpen.value = false;
+  localStorage.setItem(props.storageName, 'true');
+};
 
 onMounted(() => {
-    if (!localStorage.getItem(props.storageName)) {
-        isOpen.value = true
-    }
-})
+  if (!localStorage.getItem(props.storageName)) {
+    isOpen.value = true;
+  }
+});
 </script>
 
 <template>
