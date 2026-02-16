@@ -1,4 +1,4 @@
-# @ahdcreative/cookie-banner
+# AHD Creative Cookie Banner
 
 Simple, lightweight, and modern Cookie Consent banner for Vue 3.
 Built with TypeScript, Vite, and love. 🍪

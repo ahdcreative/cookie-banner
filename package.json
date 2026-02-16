@@ -1,11 +1,16 @@
 {
   "name": "@ahdcreative/cookie-banner",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "🍪 👮 EU Cookie Law Plugin for Vue",
   "license": "MIT",
   "author": {
     "name": "AHD Creative",
-    "email": "hello@ahd-creative.agency"
+    "email": "hello@ahd-creative.agency",
+    "url": "https://ahd-creative.agency"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahdcreative/cookie-banner.git"
   },
   "type": "module",
   "scripts": {
