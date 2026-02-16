@@ -38,12 +38,14 @@ const props = defineProps({
   },
 });
 
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const computedMessage = computed(() => {
   if (props.message) return props.message;
 
   return props.translations[props.locale]?.message || props.translations['en']?.message || '';
 });
 
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const computedButtonText = computed(() => {
   if (props.buttonText) return props.buttonText;
 
@@ -56,6 +58,7 @@ const computedButtonText = computed(() => {
 
 const isOpen = ref(false);
 
+// biome-ignore lint/correctness/noUnusedVariables: used in template
 const accept = () => {
   isOpen.value = false;
   localStorage.setItem(props.storageName, 'true');
