@@ -1,4 +1,4 @@
-import { defineComponent as p, computed as l, ref as g, onMounted as d, openBlock as c, createBlock as f, Transition as _, withCtx as b, createElementBlock as k, normalizeClass as v, createElementVNode as r, renderSlot as x, toDisplayString as u, createCommentVNode as y } from "vue";
+import { defineComponent as p, computed as l, ref as d, onMounted as g, openBlock as c, createBlock as f, Transition as _, withCtx as b, createElementBlock as k, normalizeClass as v, createElementVNode as r, renderSlot as x, toDisplayString as u, createCommentVNode as y } from "vue";
 const T = { class: "cookie-banner__content" }, h = { class: "cookie-banner__footer" }, S = /* @__PURE__ */ p({
   __name: "CookieBanner",
   props: {
@@ -44,10 +44,10 @@ const T = { class: "cookie-banner__content" }, h = { class: "cookie-banner__foot
     }), i = l(() => {
       var o, n;
       return e.buttonText ? e.buttonText : ((o = e.translations[e.locale]) == null ? void 0 : o.buttonText) || ((n = e.translations.en) == null ? void 0 : n.buttonText) || "Got it!";
-    }), a = g(!1), m = () => {
+    }), a = d(!1), m = () => {
       a.value = !1, localStorage.setItem(e.storageName, "true");
     };
-    return d(() => {
+    return g(() => {
       localStorage.getItem(e.storageName) || (a.value = !0);
     }), (o, n) => (c(), f(_, { name: "slide-up" }, {
       default: b(() => [
@@ -76,7 +76,7 @@ const T = { class: "cookie-banner__content" }, h = { class: "cookie-banner__foot
   for (const [i, a] of e)
     s[i] = a;
   return s;
-}, B = /* @__PURE__ */ C(S, [["__scopeId", "data-v-4620b724"]]), N = {
+}, B = /* @__PURE__ */ C(S, [["__scopeId", "data-v-7591cfd8"]]), N = {
   install(t) {
     t.component("CookieBanner", B);
   }

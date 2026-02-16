@@ -46,7 +46,7 @@ const computedMessage = computed(() => {
 
 const computedButtonText = computed(() => {
   if (props.buttonText) return props.buttonText;
-  // @ts-expect-error
+
   return (
     props.translations[props.locale]?.buttonText ||
     props.translations['en']?.buttonText ||
