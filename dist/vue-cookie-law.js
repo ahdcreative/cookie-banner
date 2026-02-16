@@ -76,7 +76,7 @@ const T = { class: "cookie-banner__content" }, h = { class: "cookie-banner__foot
   for (const [i, a] of e)
     s[i] = a;
   return s;
-}, B = /* @__PURE__ */ C(S, [["__scopeId", "data-v-7591cfd8"]]), N = {
+}, B = /* @__PURE__ */ C(S, [["__scopeId", "data-v-877fa6d5"]]), N = {
   install(t) {
     t.component("CookieBanner", B);
   }

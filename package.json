@@ -15,6 +15,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite build --watch",
+    "prepare": "npm run build",
     "check": "biome check",
     "fix": "biome check --write",
     "build": "vite build && vue-tsc -p tsconfig.build.json",
@@ -43,7 +44,8 @@
       "types": "./dist/vue-cookie-law.d.ts",
       "import": "./dist/vue-cookie-law.js",
       "require": "./dist/vue-cookie-law.umd.cjs"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "main": "./dist/vue-cookie-law.umd.cjs",
   "module": "./dist/vue-cookie-law.js",
