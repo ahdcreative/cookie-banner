@@ -1,14 +1,31 @@
-import { defineComponent as i, ref as l, onMounted as u, openBlock as c, createBlock as m, Transition as d, withCtx as p, createElementBlock as g, normalizeClass as f, createElementVNode as n, renderSlot as _, toDisplayString as r, createCommentVNode as k } from "vue";
-const b = { class: "cookie-banner__content" }, h = { class: "cookie-banner__footer" }, v = /* @__PURE__ */ i({
+import { defineComponent as p, computed as l, ref as g, onMounted as d, openBlock as c, createBlock as f, Transition as _, withCtx as b, createElementBlock as k, normalizeClass as v, createElementVNode as r, renderSlot as x, toDisplayString as u, createCommentVNode as y } from "vue";
+const T = { class: "cookie-banner__content" }, h = { class: "cookie-banner__footer" }, S = /* @__PURE__ */ p({
   __name: "CookieBanner",
   props: {
+    locale: {
+      type: String,
+      default: "en"
+    },
+    translations: {
+      type: Object,
+      default: () => ({
+        en: {
+          message: "This website uses cookies to ensure you get the best experience on our website.",
+          buttonText: "Got it!"
+        },
+        it: {
+          message: "Questo sito utilizza i cookie per garantirti la migliore esperienza di navigazione.",
+          buttonText: "Ho capito!"
+        }
+      })
+    },
     buttonText: {
       type: String,
-      default: "Got it!"
+      default: null
     },
     message: {
       type: String,
-      default: "This website uses cookies to ensure you get the best experience on our website."
+      default: null
     },
     theme: {
       type: String,
@@ -20,45 +37,51 @@ const b = { class: "cookie-banner__content" }, h = { class: "cookie-banner__foot
       default: "cookie:accepted"
     }
   },
-  setup(e) {
-    const o = e, t = l(!1), a = () => {
-      t.value = !1, localStorage.setItem(o.storageName, "true");
+  setup(t) {
+    const e = t, s = l(() => {
+      var o, n;
+      return e.message ? e.message : ((o = e.translations[e.locale]) == null ? void 0 : o.message) || ((n = e.translations.en) == null ? void 0 : n.message) || "";
+    }), i = l(() => {
+      var o, n;
+      return e.buttonText ? e.buttonText : ((o = e.translations[e.locale]) == null ? void 0 : o.buttonText) || ((n = e.translations.en) == null ? void 0 : n.buttonText) || "Got it!";
+    }), a = g(!1), m = () => {
+      a.value = !1, localStorage.setItem(e.storageName, "true");
     };
-    return u(() => {
-      localStorage.getItem(o.storageName) || (t.value = !0);
-    }), (s, S) => (c(), m(d, { name: "slide-up" }, {
-      default: p(() => [
-        t.value ? (c(), g("div", {
+    return d(() => {
+      localStorage.getItem(e.storageName) || (a.value = !0);
+    }), (o, n) => (c(), f(_, { name: "slide-up" }, {
+      default: b(() => [
+        a.value ? (c(), k("div", {
           key: 0,
-          class: f(["cookie-banner", `theme-${e.theme}`])
+          class: v(["cookie-banner", `theme-${t.theme}`])
         }, [
-          n("div", b, [
-            _(s.$slots, "message", {}, () => [
-              n("p", null, r(e.message), 1)
+          r("div", T, [
+            x(o.$slots, "message", {}, () => [
+              r("p", null, u(s.value), 1)
             ], !0)
           ]),
-          n("div", h, [
-            n("button", {
+          r("div", h, [
+            r("button", {
               class: "cookie-banner__button",
-              onClick: a
-            }, r(e.buttonText), 1)
+              onClick: m
+            }, u(i.value), 1)
           ])
-        ], 2)) : k("", !0)
+        ], 2)) : y("", !0)
       ]),
       _: 3
     }));
   }
-}), y = (e, o) => {
-  const t = e.__vccOpts || e;
-  for (const [a, s] of o)
-    t[a] = s;
-  return t;
-}, C = /* @__PURE__ */ y(v, [["__scopeId", "data-v-eec83b4a"]]), B = {
-  install(e) {
-    e.component("CookieBanner", C);
+}), C = (t, e) => {
+  const s = t.__vccOpts || t;
+  for (const [i, a] of e)
+    s[i] = a;
+  return s;
+}, B = /* @__PURE__ */ C(S, [["__scopeId", "data-v-4620b724"]]), N = {
+  install(t) {
+    t.component("CookieBanner", B);
   }
 };
 export {
-  C as CookieBanner,
-  B as default
+  B as CookieBanner,
+  N as default
 };

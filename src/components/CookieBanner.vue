@@ -1,14 +1,32 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
+  locale: {
+    type: String,
+    default: 'en',
+  },
+  translations: {
+    type: Object,
+    default: () => ({
+      en: {
+        message: 'This website uses cookies to ensure you get the best experience on our website.',
+        buttonText: 'Got it!',
+      },
+      it: {
+        message:
+          'Questo sito utilizza i cookie per garantirti la migliore esperienza di navigazione.',
+        buttonText: 'Ho capito!',
+      },
+    }),
+  },
   buttonText: {
     type: String,
-    default: 'Got it!',
+    default: null,
   },
   message: {
     type: String,
-    default: 'This website uses cookies to ensure you get the best experience on our website.',
+    default: null,
   },
   theme: {
     type: String,
@@ -18,6 +36,22 @@ const props = defineProps({
     type: String,
     default: 'cookie:accepted',
   },
+});
+
+const computedMessage = computed(() => {
+  if (props.message) return props.message;
+
+  return props.translations[props.locale]?.message || props.translations['en']?.message || '';
+});
+
+const computedButtonText = computed(() => {
+  if (props.buttonText) return props.buttonText;
+  // @ts-expect-error
+  return (
+    props.translations[props.locale]?.buttonText ||
+    props.translations['en']?.buttonText ||
+    'Got it!'
+  );
 });
 
 const isOpen = ref(false);
@@ -37,99 +71,102 @@ onMounted(() => {
 <template>
   <transition name="slide-up">
     <div v-if="isOpen" class="cookie-banner" :class="`theme-${theme}`">
-        <div class="cookie-banner__content">
-            <slot name="message">
-                <p>{{ message }}</p>
-            </slot>
-        </div>
-        <div class="cookie-banner__footer">
-            <button class="cookie-banner__button" @click="accept">
-                {{ buttonText }}
-            </button>
-        </div>
+      <div class="cookie-banner__content">
+        <slot name="message">
+          <p>{{ computedMessage }}</p>
+        </slot>
+      </div>
+      <div class="cookie-banner__footer">
+        <button class="cookie-banner__button" @click="accept">
+          {{ computedButtonText }}
+        </button>
+      </div>
     </div>
   </transition>
 </template>
 
 <style scoped>
 .cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 9999;
-    flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
-    .cookie-banner {
-        flex-direction: row;
-        padding: 1rem 2rem;
-    }
+  .cookie-banner {
+    flex-direction: row;
+    padding: 1rem 2rem;
+  }
 }
 
 .cookie-banner__content {
-    margin-bottom: 1rem;
-    text-align: center;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
-    .cookie-banner__content {
-        margin-bottom: 0;
-        text-align: left;
-        margin-right: 1rem;
-    }
+  .cookie-banner__content {
+    margin-bottom: 0;
+    text-align: left;
+    margin-right: 1rem;
+  }
 }
 
 .cookie-banner__button {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: opacity 0.2s;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
 }
 
 .cookie-banner__button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 /* Themes */
 .theme-dark {
-    background: #1f2937;
-    color: #fff;
+  background: #1f2937;
+  color: #fff;
 }
+
 .theme-dark .cookie-banner__button {
-    background: #fff;
-    color: #1f2937;
+  background: #fff;
+  color: #1f2937;
 }
 
 .theme-lime {
-    background: #f7fee7;
-    color: #365314;
-    border-top: 2px solid #84cc16;
+  background: #f7fee7;
+  color: #365314;
+  border-top: 2px solid #84cc16;
 }
+
 .theme-lime .cookie-banner__button {
-    background: #84cc16;
-    color: #fff;
+  background: #84cc16;
+  color: #fff;
 }
 
 .theme-dark-lime {
-    background: #1f2937;
-    color: #fff;
-    border-top: 1px solid #374151;
+  background: #1f2937;
+  color: #fff;
+  border-top: 1px solid #374151;
 }
+
 .theme-dark-lime .cookie-banner__button {
-    background: #84cc16;
-    color: #fff;
+  background: #84cc16;
+  color: #fff;
 }
 
 /* Transition */
