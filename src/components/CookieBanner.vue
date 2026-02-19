@@ -69,6 +69,8 @@ onMounted(() => {
     isOpen.value = true;
   }
 });
+
+defineExpose({ isOpen });
 </script>
 
 <template>
